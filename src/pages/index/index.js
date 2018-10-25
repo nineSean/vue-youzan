@@ -4,6 +4,7 @@ import Vue from 'vue';
 import axios from 'axios'
 import url from 'js/api.js'
 import { InfiniteScroll } from 'mint-ui';
+import Foot from 'components/Foot.vue'
 
 Vue.use(InfiniteScroll);
 
@@ -15,6 +16,9 @@ const app = new Vue({
     pageSize: 6,
     loading: false,
     allLoaded: false,
+  },
+  components:{
+    Foot
   },
   created(){
     this.getLists()
