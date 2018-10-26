@@ -25,9 +25,7 @@ const app = new Vue({
   },
   created(){
     this.getLists()
-    this.$nextTick(() => {
-      this.getBanner()
-    })
+    this.getBanner()
   },
   methods: {
     getLists(){
@@ -62,5 +60,5 @@ const app = new Vue({
   },
   computed: {
 
-  }
+  },
 })
