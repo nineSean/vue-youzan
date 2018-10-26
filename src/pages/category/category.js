@@ -4,13 +4,11 @@ import Vue from 'vue';
 import axios from 'axios'
 import url from 'js/api.js'
 import { InfiniteScroll } from 'mint-ui';
-import Foot from 'components/Foot.vue'
+import mixin from 'js/mixin.js'
 
 const category = new Vue({
   el: '#category',
-  components: {
-    Foot
-  },
+  mixins: [mixin],
   data(){
     return {
       topLists: null,
@@ -40,9 +38,4 @@ const category = new Vue({
     this.fetchData('topLists')
     this.fetchData('rankData')
   },
-  filters: {
-    format(n){
-      return String(parseInt(Number(n)*100)).replace(/(\d{2})$/, '.$1')
-    }
-  }
 })
