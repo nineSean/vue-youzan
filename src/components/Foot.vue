@@ -1,34 +1,48 @@
 <template>
   <div class="bottom-nav">
     <ul>
-      <li :class="{active: isActive('/index.html')}"><a href="index.html"><i class="icon-home"></i><div>有赞</div></a></li>
-      <li :class="{active: isActive('/category.html')}"><a href="category.html"><i class="icon-category"></i><div>分类</div></a></li>
-      <li><a href="https://h5.youzan.com/v2/trade/cart?f_platform=yzapp&amp;source=yzapp"><i class="icon-cart"></i><div>购物车</div></a></li>
-      <li><a href="https://h5.youzan.com/v2/buyer/member"><i class="icon-user"></i><div>我</div></a></li>
+      <li :class="{active: currentPath===list.href}"
+        v-for="(list,index) in lists"
+        ><a :href="list.href"><i :class="list.iconClass"></i><div>{{list.text}}</div></a></li>
     </ul>
   </div>
 </template>
 
 <script>
+const lists = [
+  {
+    href: 'index.html',
+    iconClass: 'icon-home',
+    text: '有赞'
+  },
+  {
+    href: 'category.html',
+    iconClass: 'icon-category',
+    text: '分类'
+  },
+  {
+    href: 'cart.html',
+    iconClass: 'icon-cart',
+    text: '购物车'
+  },
+  {
+    href: 'member.html',
+    iconClass: 'icon-user',
+    text: '我'
+  },
+]
+
 export default {
   name: "foot",
   data() {
     return {
-      currentPath: 'index.html',
+      lists,
+      currentPath: location.pathname.substr(1),
     };
   },
-  computed: {
-  },
   created(){
-    this.getPath()
   },
   methods: {
-    getPath(){
-      this.currentPath = location.pathname
-    },
-    isActive(path){
-      return this.currentPath === path
-    }
   }
 };
 </script>
