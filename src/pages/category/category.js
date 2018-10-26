@@ -32,7 +32,7 @@ const category = new Vue({
       }else{
         this.fetchData('subData')
       }
-    }
+    },
   },
   created(){
     this.fetchData('topLists')

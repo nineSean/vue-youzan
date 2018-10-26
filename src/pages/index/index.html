@@ -68,7 +68,7 @@
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="80"
           >
-            <li v-for="list in lists" :key="list.id">
+            <li v-for="list in lists" @click="toSearch(list)" :key="list.id">
               <div class="goods-item">
                 <a href="#">
                   <div class="thumb img-box">

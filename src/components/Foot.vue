@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       lists,
-      currentPath: location.pathname.substr(1),
+      currentPath: location.pathname.substr(1) || 'index.html',
     };
   },
   created(){
