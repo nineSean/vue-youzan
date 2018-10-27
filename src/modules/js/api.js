@@ -4,6 +4,7 @@ const url = {
   topLists: '/category/topLists',
   subData: '/category/subLists',
   rankData: '/category/rank',
+  searchLists: '/search/lists',
 }
 // const host = 'http://rap2api.taobao.org/app/mock/115043'
 const host = 'https://easy-mock.com/mock/5bd1bce75e38a677f659a931'
