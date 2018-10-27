@@ -28,7 +28,7 @@
 </head>
 
 <body class=" " style="min-height: 667px;">
-  <div class="container with-top-search" style="min-height: 667px;" v-cloak>
+  <div class="container with-top-search" style="min-height: 667px;" v-cloak @touchmove="toShowOrNot">
     <div class="custom-search js-search-bar">
       <form>
         <input type="search" class="custom-search-input" autocomplete="off" name="keyword" :value="keyword" placeholder="搜索更赞的商品" style="padding-left: 66px;">
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="loading-more" v-show="!searchLists"><span></span></div>
-    <div class="go-to-top" v-show="isShowed" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);"></div>
+    <div class="go-to-top" v-show="isShowed" @click="toTop()" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);"></div>
   </div>
 </body>
 
