@@ -70,7 +70,7 @@
           >
             <li v-for="list in lists" @click="toSearch(list)" :key="list.id">
               <div class="goods-item">
-                <a href="#">
+                <a :href="'goods.html?id='+list.id">
                   <div class="thumb img-box">
                     <img class="fadeIn" :src="list.img">
                   </div>
