@@ -5,6 +5,7 @@ import './goods.css'
 import './goods_theme.css'
 import './goods_mars.css'
 import './goods_sku.css'
+import './goods_transition.css'
 import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
@@ -24,11 +25,19 @@ const goods = new Vue({
     swipeLists: null,
     currentIndex: 0,
     dealLists: null,
+    skuType: null,
+    showSku: false,
+    buyNum: 1,
+    buttonGray: true,
   },
   created(){
     this.getGoodsData()
   },
   watch: {
+    showSku(val, oldVal){
+      document.body.style.overflow = val ? 'hidden' : 'auto'
+      document.body.style.height = val ? '100%' : 'auto'
+    }
   },
   methods: {
     fetch(api, param){
@@ -45,6 +54,16 @@ const goods = new Vue({
           console.log(error)
         })
       }
+    },
+    changeNum(num){
+      if(this.buyNum <= 1 && num < 0) {
+        return
+      }
+      this.buyNum += num
+    },
+    chooseSku(type){
+      this.skuType = type
+      this.showSku = true
     },
     getGoodsData(){
       this.fetch(url.goodsData, {id}).then( data => {
