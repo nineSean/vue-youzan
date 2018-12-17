@@ -130,10 +130,10 @@
               <div class="stick-bottom-btns">
                 <!-- 尚未开售 -->
                 <div class="btn-cart">
-                  <a href="https://h5.youzan.com/v2/showcase/goods?alias=1y7n2wi58q1as&amp;source=yzapp&amp;f_platform=yzapp&amp;reft=1499937523785&amp;spm=mars20003" class="js-add-cart">加入购物车</a>
+                  <a class="js-add-cart" @click="chooseSku(2)">加入购物车</a>
                 </div>
                 <div class="btn-buy">
-                  <a href="javascript:;" class="js-buy-it">立即购买</a>
+                  <a href="javascript:;" class="js-buy-it" @click="chooseSku(3)">立即购买</a>
                 </div>
               </div>
             </div>
@@ -146,9 +146,9 @@
                 <a class="js-show-more-btn icon show-more-btn hide"></a>
               </div>
             </div> -->
-            <div id="right-icon" class="js-right-icon ">
+            <div id="right-icon" class="js-right-icon" v-show="isAddCart">
               <div class="js-right-icon-container right-icon-container clearfix">
-                <a id="global-cart" href="https://h5.youzan.com/v2/trade/cart?kdt_id=16546132" class="icon new s0" style="">
+                <a id="global-cart" :href="'/cart.html?id='+id" class="icon new s0" style="">
                   <p class="icon-img"></p>
                   <p class="icon-txt">购物车</p>
                 </a>
@@ -418,7 +418,7 @@
                         :disabled="buyNum===1"
                         >
                       </button>
-                      <input type="text" class="txt" pattern="[0-9]*" v-model="buyNum">
+                      <input type="number" class="txt" pattern="[0-9]*" v-model.number="buyNum">
                       <button class="plus" type="button"></button>
                       <div class="response-area response-area-minus" @click="changeNum(-1)"></div>
                       <div class="response-area response-area-plus" @click="changeNum(1)"></div>
@@ -437,7 +437,7 @@
             <div class="confirm-action content-foot clearfix">
               <!-- 加入购物车 -->
               <div class="big-btn-1-1" v-show="skuType===2">
-                <a href="javascript:;" class="js-confirm-it big-btn red-btn main-btn">加入购物车</a>
+                <a href="javascript:;" class="js-confirm-it big-btn red-btn main-btn" @click="addCart">加入购物车</a>
               </div>
               <!-- 立即购买 -->
               <div class="big-btn-1-1" v-show="skuType===3">
@@ -445,7 +445,7 @@
               </div>
               <!-- 选择规格 -->
               <div class="big-btn-2-1" v-show="skuType===1">
-                <a href="javascript:;" class="js-mutiBtn-confirm cart big-btn orange-btn vice-btn">加入购物车</a>
+                <a href="javascript:;" class="js-mutiBtn-confirm cart big-btn orange-btn vice-btn" @click="addCart">加入购物车</a>
                 <a href="javascript:;" class="js-mutiBtn-confirm confirm big-btn red-btn main-btn">立即购买</a>
               </div>
             </div>
@@ -453,7 +453,7 @@
         </div>
       </transition>
 
-      <div class="motify" style="display: none;">
+      <div class="motify" :style="{display: isShowMessage ? 'block' : 'none'}">
         <div class="motify-inner">已成功添加到购物车</div>
       </div>
     </main>

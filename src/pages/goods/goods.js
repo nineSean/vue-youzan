@@ -21,6 +21,7 @@ const goods = new Vue({
     swipe
   },
   data: {
+    id,
     goodsData: null,
     swipeLists: null,
     currentIndex: 0,
@@ -28,7 +29,8 @@ const goods = new Vue({
     skuType: null,
     showSku: false,
     buyNum: 1,
-    buttonGray: true,
+    isAddCart: false,
+    isShowMessage: false,
   },
   created(){
     this.getGoodsData()
@@ -55,8 +57,23 @@ const goods = new Vue({
         })
       }
     },
+    addCart(){
+      this.fetch(url.addCart, {
+        id,
+        number: this.buyNum
+      }).then(res => {
+        if(res.status === 200){
+          this.showSku = false
+          this.isAddCart = true
+          this.isShowMessage = true
+          setTimeout(() => {
+            this.isShowMessage = false
+          }, 1000)
+        }
+      })
+    },
     changeNum(num){
-      if(this.buyNum <= 1 && num < 0) {
+      if(this.buyNum === 1 && num < 0) {
         return
       }
       this.buyNum += num

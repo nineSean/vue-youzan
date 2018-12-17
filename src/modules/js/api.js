@@ -7,6 +7,7 @@ const url = {
   searchLists: '/search/lists',
   goodsData: '/goods/details',
   goodsDeal: '/goods/deal',
+  addCart: '/cart/add'
 }
 // const host = 'http://rap2api.taobao.org/app/mock/115043'
 const host = 'https://easy-mock.com/mock/5bd1bce75e38a677f659a931'
