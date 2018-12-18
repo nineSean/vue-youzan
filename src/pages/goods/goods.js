@@ -39,6 +39,9 @@ const goods = new Vue({
     showSku(val, oldVal){
       document.body.style.overflow = val ? 'hidden' : 'auto'
       document.body.style.height = val ? '100%' : 'auto'
+    },
+    buyNum(val){
+      if(val <= 0) this.buyNum = 1
     }
   },
   methods: {
