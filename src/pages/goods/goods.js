@@ -61,7 +61,7 @@ const goods = new Vue({
       }
     },
     addCart(){
-      this.fetch(url.addCart, {
+      this.fetch(url.cartAdd, {
         id,
         number: this.buyNum
       }).then(res => {
