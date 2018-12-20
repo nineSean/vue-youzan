@@ -154,6 +154,7 @@
               <button href="javascript:;" class="j-delete-goods btn font-size-14 btn-red"
                 v-show="editingShop"
                 :disabled="!listRemoved.length"
+                @click="removeList"
                 >删除</button>
             </div>
           </div>
