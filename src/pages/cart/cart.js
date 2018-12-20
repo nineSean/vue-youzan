@@ -6,6 +6,7 @@ import axios from 'axios'
 import url from 'js/api.js'
 import mixin from 'js/mixin.js'
 import velocity from 'velocity-animate'
+import Cart from 'js/cartService.js'
 
 new Vue({
   el: '.container',
@@ -66,21 +67,27 @@ new Vue({
       this.editingShopIndex = shopItem.editing ? shopIndex : -1
     },
     add(item) {
-      axios.post(url.cartPlus, {
-        id: item.id,
-        number: 1
-      }).then(res => {
+      // axios.post(url.cartPlus, {
+      //   id: item.id,
+      //   number: 1
+      // }).then(res => {
+      //   item.number++
+      // })
+      Cart.add(item.id).then(res => {
         item.number++
       })
     },
     reduce(item) {
       if(item.number == 1) return
-      axios.post(url.cartReduce, {
-        id: item.id,
-        number: 1
-      }).then(res => {
+      Cart.reduce(item.id).then(res => {
         item.number--
       })
+      // axios.post(url.cartReduce, {
+      //   id: item.id,
+      //   number: 1
+      // }).then(res => {
+      //   item.number--
+      // })
     },
     moreThanOne(val){
       return typeof val === 'number' && val >= 1 ? parseInt(val) : 1
@@ -148,7 +155,7 @@ new Vue({
       let left = '0px'
       if(shop.startX - endX > 100){
         left = '-60px'
-        
+
       }
       if(endX - shop.startX > 100){
         left = '0px'
