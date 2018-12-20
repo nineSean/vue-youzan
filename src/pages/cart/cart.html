@@ -50,7 +50,10 @@
                 <ul class="js-list block block-list block-list-cart border-0">
                   <li class="block-item block-item-cart"
                     :class="{editing: shopItem.editing}"
-                    v-for="(goodItem,goodIndex) in shopItem.goodsList">
+                    v-for="(goodItem,goodIndex) in shopItem.goodsList"
+                    :ref="'good-'+shopIndex+'-'+goodIndex"
+                    @touchstart="start($event,shopItem)"
+                    @touchend="end($event,shopItem,shopIndex,goodIndex)">
                     <div>
                       <div class="check-container" @click="selectGood(goodItem, shopItem)">
                         <span class="check" :class="{checked:editingShop?goodItem.removeChecked:goodItem.checked}"></span>
@@ -87,7 +90,6 @@
                         <div class="error-box"></div>
                       </div>
                       <div class="delete-btn"
-                        v-show="shopItem.editing"
                         @click="remove(shopItem,shopIndex,goodItem,goodIndex)"><span>删除</span></div>
                     </div>
                   </li>

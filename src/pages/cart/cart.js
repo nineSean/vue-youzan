@@ -5,6 +5,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
 import mixin from 'js/mixin.js'
+import velocity from 'velocity-animate'
 
 new Vue({
   el: '.container',
@@ -137,6 +138,23 @@ new Vue({
       this.editingShopIndex = -1
       this.lists.forEach(shop => {
         shop.editingMsg = '编辑'
+      })
+    },
+    start(e, shop) {
+      shop.startX = e.changedTouches[0].clientX
+    },
+    end(e, shop, shopIndex, goodIndex) {
+      let endX = e.changedTouches[0].clientX
+      let left = '0px'
+      if(shop.startX - endX > 100){
+        left = '-60px'
+        
+      }
+      if(endX - shop.startX > 100){
+        left = '0px'
+      }
+      velocity(this.$refs[`good-${shopIndex}-${goodIndex}`], {
+        left
       })
     }
   },
