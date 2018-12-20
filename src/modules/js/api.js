@@ -8,10 +8,10 @@ const url = {
   goodsData: '/goods/details',
   goodsDeal: '/goods/deal',
   cartAdd: '/cart/add',
+  cartPlus: '/cart/plus',
   cartReduce: '/cart/reduce',
   cartLists: '/cart/lists',
   cartRemove: '/cart/remove',
-  cartMremove: '/cart/mremove',
 
 }
 // const host = 'http://rap2api.taobao.org/app/mock/115043'
