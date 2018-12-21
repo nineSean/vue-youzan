@@ -152,7 +152,7 @@ new Vue({
     },
     end(e, shop, shopIndex, goodIndex) {
       let endX = e.changedTouches[0].clientX
-      let left = '0px'
+      let left = '0'
       if(shop.startX - endX > 100){
         left = '-60px'
 
@@ -226,9 +226,6 @@ new Vue({
       }
       return arr
     }
-  },
-  watch: {
-
   },
   mixins: [mixin],
 })
