@@ -13,6 +13,11 @@ const url = {
   cartLists: '/cart/lists',
   cartRemove: '/cart/remove',
   cartMremove: '/cart/mRemove',
+  addressLists: '/address/list',
+  addressAdd: '/address/add',
+  addressRemove: '/address/remove',
+  addressUpdate: '/address/update',
+  addressSetDefault: '/address/setDefault',
 }
 // const host = 'http://rap2api.taobao.org/app/mock/115043'
 const host = 'https://easy-mock.com/mock/5bd1bce75e38a677f659a931'
