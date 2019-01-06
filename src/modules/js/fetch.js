@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default function fetch(api, param) {
   return new Promise((resolve, reject) => {
-    let promise = !!param && param['constructor'] === Object ? axios.post(api, param) : axios.get(api)
+    let promise = !!param ? axios.post(api, param) : axios.get(api)
     promise.then(res => {
       let status = res.data.status
       if (status == 200) {

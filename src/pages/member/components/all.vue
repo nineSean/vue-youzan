@@ -25,6 +25,7 @@
 
 <script>
   import Address from 'js/addressService.js'
+  import Bus from 'js/eventBus.js'
   export default {
     data(){
       return {
@@ -34,6 +35,17 @@
     created(){
       Address.list().then(res => {
         this.lists = res.data.lists
+      })
+    },
+    mounted(){
+      Bus.$on('setDefault', id => {
+        const index = this.lists.findIndex(item => {
+          return item.id == id
+        })
+        this.$nextTick(()=>{
+          this.lists[index].isDefault = true // 视图和vue-devtools的数据都没改变，但是下面log中已改变？？？
+          console.log(this.lists)
+        })
       })
     },
     methods: {

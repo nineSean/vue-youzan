@@ -15,6 +15,6 @@ export default class Address {
     return fetch(url.addressUpdate, data)
   }
   static setDefault(id) {
-    return fetach(url.addressSetDefault, id)
+    return fetch(url.addressSetDefault, id)
   }
 }
