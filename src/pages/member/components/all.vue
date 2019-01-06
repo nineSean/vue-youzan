@@ -25,6 +25,7 @@
 
 <script>
   import Address from 'js/addressService.js'
+  import Bus from 'js/eventBus.js'
   export default {
     data(){
       return {
@@ -34,6 +35,12 @@
     created(){
       Address.list().then(res => {
         this.lists = res.data.lists
+      })
+      Bus.$on('setDefault', id => {
+        const index = this.lists.findIndex(item => {
+          return item.id == id
+        })
+        this.lists[index]
       })
     },
     methods: {
