@@ -24,18 +24,18 @@
 </template>
 
 <script>
-  import Address from 'js/addressService.js'
+  // import Address from 'js/addressService.js'
   import Bus from 'js/eventBus.js'
   export default {
-    data(){
-      return {
-        lists: null,
+    computed: {
+      lists(){
+        return this.$store.state.lists
       }
     },
     created(){
-      Address.list().then(res => {
-        this.lists = res.data.lists
-      })
+      if(!this.lists){
+        this.$store.dispatch('getLists')
+      }
     },
     mounted(){
       Bus.$on('setDefault', id => {
@@ -43,7 +43,7 @@
           return item.id == id
         })
         this.$nextTick(()=>{
-          this.lists[index].isDefault = true // 视图和vue-devtools的数据都没改变，但是下面log中已改变？？？
+          this.lists[index].isDefault = true // 视图和vue-devtools的数据都没改变，但是下面控制台打印已改变？？？
           console.log(this.lists)
         })
       })

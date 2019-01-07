@@ -1,5 +1,6 @@
 import Address from 'js/addressService.js'
 import Bus from 'js/eventBus.js'
+import {mapState} from 'vuex'
 
 export default {
   data(){
@@ -34,34 +35,45 @@ export default {
   beforeDestroy(){
     Bus.$off('setDefault')
   },
+  computed: mapState([
+    'lists'
+  ]),
+  // computed: mapState({
+  //   lists: state => state.lists
+  // }),
+  // computed: {
+  //   lists(){
+  //     return this.$store.state.lists
+  //   },
+  // },
   methods: {
     add(){
       //待校验非空与非法字符
       let {name, id, tel, address, provinceZip, cityZip, districtZip} = this
       let data = {name, id, tel, address, provinceZip, cityZip, districtZip}
       if(this.type == 'add'){
-        Address.add(data).then(res => {
-          this.$router.go(-1)
-        })
+        this.$store.dispatch('addAction', data)
       }else if(this.type == 'edit'){
-        Address.update(data).then(res => {
-          this.$router.go(-1)
-        })
+        this.$store.dispatch('updateAction', data)
       }
     },
     remove(){
-      window.confirm('请确认是否删除该地址') ? Address.remove(this.id).then(res => {
-        this.$router.go(-1)
-      }) : 1
+      window.confirm('请确认是否删除该地址') ? this.$store.dispatch('removeAction', this.id) : 1
     },
     setDefault(){
-      Address.setDefault(this.id).then(res => {
-        Bus.$emit('setDefault', this.id)
-        this.$router.go(-1)
-      })
+      this.$store.dispatch('setDefaultAction', this.id)
+    },
+    changeCity(val){
+      console.log(val)
     }
   },
   watch: {
+    lists: {
+      handler(){
+        this.$router.go(-1)
+      },
+      deep: true,
+    },
     provinceZip(val){
       if(val == -1) return
       const list = this.addressData.list
