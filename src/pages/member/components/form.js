@@ -63,9 +63,6 @@ export default {
     setDefault(){
       this.$store.dispatch('setDefaultAction', this.id)
     },
-    changeCity(val){
-      console.log(val)
-    }
   },
   watch: {
     lists: {

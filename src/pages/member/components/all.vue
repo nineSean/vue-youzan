@@ -47,6 +47,12 @@
           console.log(this.lists)
         })
       })
+      Bus.$on('setDefault', id => {
+        const index = this.lists.findIndex(item => {
+          return item.id == id
+        })
+        this.lists[index]
+      })
     },
     methods: {
       toEdit(param){
