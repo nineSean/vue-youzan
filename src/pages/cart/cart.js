@@ -39,15 +39,35 @@ new Vue({
         this.lists = lists
       })
     },
-    selectShop(shopItem){
-      let attr = this.editingShop ? 'removeChecked' : 'checked'
+    selectShop(shopItem, shopIndex){
+      if (this.editingShop) {
+        if (this.editingShopIndex == shopIndex){
+          let attr = 'removeChecked'
+          shopItem[attr] = !shopItem[attr]
+          shopItem.goodsList.forEach(good => {
+            good[attr] = shopItem[attr]
+          })
+        }else{
+          return
+        }
+      }
+      let attr = 'checked'
       shopItem[attr] = !shopItem[attr]
       shopItem.goodsList.forEach(good => {
         good[attr] = shopItem[attr]
       })
     },
-    selectGood(goodItem, shopItem) {
-      let attr = this.editingShop ? 'removeChecked' : 'checked'
+    selectGood(goodItem, shopItem, shopIndex) {
+      if(this.editingShop){
+        if(this.editingShopIndex == shopIndex){
+          let attr = 'removeChecked'
+          goodItem[attr]= !goodItem[attr]
+          shopItem[attr]= shopItem.goodsList.every(good => good[attr])
+        }else{
+          return
+        }
+      }
+      let attr = 'checked'
       goodItem[attr]= !goodItem[attr]
       shopItem[attr]= shopItem.goodsList.every(good => good[attr])
     },

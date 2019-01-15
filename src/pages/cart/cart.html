@@ -35,7 +35,7 @@
             <div class="block block-order block-cart"
               v-for="(shopItem,shopIndex) in lists">
               <div class="header">
-                <div class="select-group js-select-group" @click="selectShop(shopItem)">
+                <div class="select-group js-select-group" @click="selectShop(shopItem, shopIndex)">
                   <span class="check" :class="{checked:editingShop?shopItem.removeChecked:shopItem.checked}"></span>
                 </div>
                 <a class="shop-title"><i class="custom-store-img">店铺：</i>{{shopItem.shopTitle}}</a>
@@ -56,7 +56,7 @@
                     @touchstart="start($event,shopItem)"
                     @touchend="end($event,shopItem,shopIndex,goodIndex)">
                     <div>
-                      <div class="check-container" @click="selectGood(goodItem, shopItem)">
+                      <div class="check-container" @click="selectGood(goodItem, shopItem, shopIndex)">
                         <span class="check" :class="{checked:editingShop?goodItem.removeChecked:goodItem.checked}"></span>
                       </div>
                       <div class="name-card clearfix">
