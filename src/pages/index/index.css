@@ -210,6 +210,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 }
 
 .swiper-container {
+  height: 30vh;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -265,7 +266,6 @@ only screen and (min-device-pixel-ratio:1.5) {
 
 .swiper-pagination {
   margin: 0;
-  text-align: right;
   position: absolute;
   bottom: 5px;
   width: 100%;
